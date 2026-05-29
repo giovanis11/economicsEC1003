@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Economics Quiz Studio</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="side-panel" aria-label="Chapter and question navigation">
+        <div class="brand-block">
+          <span class="brand-mark">EC</span>
+          <div>
+            <h1>Economics Quiz Studio</h1>
+            <p id="chapter-subtitle">Chapter review</p>
+          </div>
+        </div>
+
+        <label class="field-label" for="chapter-select">Chapter</label>
+        <select id="chapter-select" class="chapter-select"></select>
+
+        <div class="score-grid" aria-live="polite">
+          <div>
+            <span id="score-value">0</span>
+            <small>correct</small>
+          </div>
+          <div>
+            <span id="answered-value">0</span>
+            <small>answered</small>
+          </div>
+        </div>
+
+        <div class="progress-track" aria-hidden="true">
+          <span id="progress-fill"></span>
+        </div>
+
+        <div class="nav-actions">
+          <button id="reset-btn" class="icon-btn" type="button" title="Reset chapter" aria-label="Reset chapter">
+            <span aria-hidden="true">&#8634;</span>
+          </button>
+          <button id="import-btn" class="icon-btn" type="button" title="Import chapter JSON" aria-label="Import chapter JSON">
+            <span aria-hidden="true">+</span>
+          </button>
+          <input id="import-input" type="file" accept="application/json,.json" hidden>
+        </div>
+
+        <div class="question-map" id="question-map" aria-label="Questions"></div>
+      </aside>
+
+      <section class="quiz-stage" aria-live="polite">
+        <header class="stage-header">
+          <div>
+            <span class="eyebrow" id="chapter-kicker">Chapter 1</span>
+            <h2 id="question-title">Question 1</h2>
+          </div>
+          <button id="flag-btn" class="flag-btn" type="button" aria-pressed="false">
+            <span aria-hidden="true">&#9873;</span>
+            Flag
+          </button>
+        </header>
+
+        <article class="question-card">
+          <p id="question-text" class="question-text"></p>
+          <figure id="question-figure" class="question-figure" hidden>
+            <img id="question-image" src="" alt="">
+            <figcaption id="question-caption"></figcaption>
+          </figure>
+          <div id="answers" class="answer-list"></div>
+          <div id="feedback" class="feedback" hidden></div>
+        </article>
+
+        <footer class="stage-footer">
+          <button id="prev-btn" class="secondary-btn" type="button">Previous</button>
+          <button id="next-btn" class="primary-btn" type="button">Next</button>
+        </footer>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
