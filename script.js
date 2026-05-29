@@ -883,6 +883,10 @@ builtInChapters.push({
   ]
 });
 
+if (Array.isArray(window.extraBuiltInChapters)) {
+  builtInChapters.push(...window.extraBuiltInChapters);
+}
+
 let chapters = loadChapters();
 let chapterIndex = 0;
 let questionIndex = 0;
