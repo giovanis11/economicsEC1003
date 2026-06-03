@@ -1,4 +1,68 @@
 const STORAGE_KEY = "economics-quiz-imports";
+const RANDOM_QUESTION_COUNT = 20;
+
+const focusKeywords = [
+  "allocation and use of scarce resources",
+  "scarce resources",
+  "unlimited human wants",
+  "opportunity cost",
+  "production possibilities",
+  "attainable",
+  "unattainable",
+  "unemployment",
+  "generalized growth",
+  "specialized growth",
+  "new energy source",
+  "marginal",
+  "diminishing marginal utility",
+  "real-balances effect",
+  "real-balance effect",
+  "substitution effect",
+  "complement",
+  "substitute",
+  "expected",
+  "expectation",
+  "taste",
+  "income",
+  "quantity demanded",
+  "quantity supplied",
+  "demand curve",
+  "supply curve",
+  "increase in demand",
+  "decrease in demand",
+  "increase in supply",
+  "decrease in supply",
+  "equilibrium price",
+  "equilibrium quantity",
+  "elastic",
+  "inelastic",
+  "consumer surplus",
+  "producer surplus",
+  "total surplus",
+  "variable cost",
+  "fixed cost",
+  "total cost",
+  "marginal cost",
+  "average fixed cost",
+  "average variable cost",
+  "average total cost",
+  "atc",
+  "avc",
+  "afc",
+  "mc",
+  "normal profit",
+  "perfect competition",
+  "perfect competitor",
+  "price taker",
+  "monopoly",
+  "monopolist",
+  "price maker",
+  "shuts down",
+  "shutdown",
+  "optimal quantity",
+  "optimal choice",
+  "marginal benefit equals marginal cost"
+];
 
 const builtInChapters = [
   {
@@ -927,11 +991,81 @@ function loadImportedChapters() {
 }
 
 function loadChapters() {
-  return mixChapterOptions([...builtInChapters, ...importedChapters]);
+  const regularChapters = sourceChapters();
+  return mixChapterOptions([
+    ...regularChapters,
+    createRandomChapter(regularChapters),
+    createFocusChapter(regularChapters)
+  ]);
 }
 
 function saveImportedChapters() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(importedChapters));
+}
+
+function sourceChapters() {
+  return [...builtInChapters, ...importedChapters];
+}
+
+function createRandomChapter(sourceChapterItems) {
+  const pool = collectQuestions(sourceChapterItems);
+  return {
+    id: `random-review-${Date.now()}-${Math.floor(Math.random() * 100000)}`,
+    kind: "random",
+    kicker: "Random",
+    title: "Random",
+    subtitle: "20 questions from every chapter",
+    questions: shuffleRandom(pool).slice(0, Math.min(RANDOM_QUESTION_COUNT, pool.length))
+  };
+}
+
+function createFocusChapter(sourceChapterItems) {
+  const seen = new Set();
+  const questions = collectQuestions(sourceChapterItems).filter((questionItem) => {
+    const key = `${questionItem.text}::${questionItem.options.join("|")}`;
+    if (seen.has(key) || !matchesFocusTopic(questionItem)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  return {
+    id: "focus-review",
+    kind: "focus",
+    kicker: "Focus",
+    title: "Focus",
+    subtitle: "Professor's review topics",
+    questions
+  };
+}
+
+function collectQuestions(sourceChapterItems) {
+  return sourceChapterItems.flatMap((chapterItem) => chapterItem.questions.map((questionItem) => ({
+    ...questionItem,
+    sourceChapter: chapterItem.kicker || chapterItem.title
+  })));
+}
+
+function matchesFocusTopic(questionItem) {
+  const searchable = [
+    questionItem.text,
+    questionItem.explanation,
+    questionItem.caption,
+    questionItem.imageAlt,
+    ...questionItem.options
+  ].join(" ").toLowerCase();
+
+  return focusKeywords.some((keyword) => searchable.includes(keyword));
+}
+
+function shuffleRandom(items) {
+  const ordered = items.map((item) => ({ ...item }));
+
+  for (let index = ordered.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [ordered[index], ordered[swapIndex]] = [ordered[swapIndex], ordered[index]];
+  }
+
+  return ordered;
 }
 
 function mixChapterOptions(sourceChapters) {
@@ -1123,6 +1257,14 @@ function renderTable(table) {
 }
 
 function resetChapter() {
+  if (chapter().kind === "random") {
+    refreshRandomChapter();
+    questionIndex = 0;
+    renderChapterSelect();
+    render();
+    return;
+  }
+
   const prefix = `${chapter().id}:`;
   Object.keys(answers).forEach((key) => {
     if (key.startsWith(prefix)) delete answers[key];
@@ -1132,6 +1274,14 @@ function resetChapter() {
   });
   questionIndex = 0;
   render();
+}
+
+function refreshRandomChapter() {
+  const randomIndex = chapters.findIndex((chapterItem) => chapterItem.kind === "random");
+  if (randomIndex === -1) return;
+
+  chapters[randomIndex] = mixChapterOptions([createRandomChapter(sourceChapters())])[0];
+  chapterIndex = randomIndex;
 }
 
 function validateChapter(data) {
@@ -1217,7 +1367,11 @@ els.importInput.addEventListener("change", (event) => {
 
 els.chapterSelect.addEventListener("change", (event) => {
   chapterIndex = Number(event.target.value);
+  if (chapter().kind === "random") {
+    refreshRandomChapter();
+  }
   questionIndex = 0;
+  renderChapterSelect();
   render();
 });
 
