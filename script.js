@@ -887,6 +887,7 @@ if (Array.isArray(window.extraBuiltInChapters)) {
   builtInChapters.push(...window.extraBuiltInChapters);
 }
 
+let importedChapters = loadImportedChapters();
 let chapters = loadChapters();
 let chapterIndex = 0;
 let questionIndex = 0;
@@ -917,18 +918,75 @@ const els = {
   flagBtn: document.querySelector("#flag-btn")
 };
 
-function loadChapters() {
+function loadImportedChapters() {
   try {
-    const imported = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    return [...builtInChapters, ...imported];
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
   } catch {
-    return [...builtInChapters];
+    return [];
   }
 }
 
+function loadChapters() {
+  return mixChapterOptions([...builtInChapters, ...importedChapters]);
+}
+
 function saveImportedChapters() {
-  const imported = chapters.filter((chapter) => !builtInChapters.some((builtIn) => builtIn.id === chapter.id));
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(imported));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(importedChapters));
+}
+
+function mixChapterOptions(sourceChapters) {
+  return sourceChapters.map((chapterItem, chapterNumber) => ({
+    ...chapterItem,
+    questions: chapterItem.questions.map((questionItem, questionNumber) => {
+      if (!Array.isArray(questionItem.options) || questionItem.options.length < 2) {
+        return { ...questionItem };
+      }
+
+      const seed = hashString(`${chapterItem.id || chapterNumber}:${questionNumber}:${questionItem.text}`);
+      const orderedOptions = shuffleWithAnswer(questionItem.options, questionItem.answer, seed);
+
+      return {
+        ...questionItem,
+        options: orderedOptions.map((item) => item.option),
+        answer: orderedOptions.findIndex((item) => item.wasCorrect)
+      };
+    })
+  }));
+}
+
+function shuffleWithAnswer(options, answer, seed) {
+  const ordered = options.map((option, index) => ({
+    option,
+    wasCorrect: index === answer,
+    originalIndex: index
+  }));
+  let state = seed;
+
+  for (let index = ordered.length - 1; index > 0; index -= 1) {
+    state = nextSeed(state);
+    const swapIndex = state % (index + 1);
+    [ordered[index], ordered[swapIndex]] = [ordered[swapIndex], ordered[index]];
+  }
+
+  if (ordered.every((item, index) => item.originalIndex === index)) {
+    const offset = (seed % (ordered.length - 1)) + 1;
+    ordered.push(...ordered.splice(0, offset));
+  }
+
+  return ordered;
+}
+
+function hashString(value) {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function nextSeed(seed) {
+  return Math.imul(seed ^ (seed >>> 15), 2246822507) >>> 0;
 }
 
 function chapter() {
@@ -1099,10 +1157,11 @@ function importChapter(file) {
   reader.addEventListener("load", () => {
     try {
       const imported = validateChapter(JSON.parse(reader.result));
-      chapters.push(imported);
-      chapterIndex = chapters.length - 1;
+      importedChapters.push(imported);
       questionIndex = 0;
       saveImportedChapters();
+      chapters = loadChapters();
+      chapterIndex = chapters.length - 1;
       renderChapterSelect();
       render();
     } catch (error) {

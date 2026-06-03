@@ -435,8 +435,8 @@
           imageAlt: "Figure 5.1 firm cost curves with MR crossing MC.",
           caption: "Figure 5.1",
           options: ["Q1", "Q2", "Q3", "Q4"],
-          answer: 2,
-          explanation: "A perfect competitor produces where MR equals MC, provided price is above AVC."
+          answer: 1,
+          explanation: "A perfect competitor produces where MR equals MC; in the figure that output is Q2."
         },
         {
           text: "In Figure 5.3, what output would a perfect competitor produce?",
@@ -453,8 +453,8 @@
           imageAlt: "Figure 5.4 monopoly demand, marginal revenue, and cost curves.",
           caption: "Figure 5.4",
           options: ["P1", "P2", "P3", "P4"],
-          answer: 2,
-          explanation: "The monopolist chooses Q* from MR=MC and charges the demand-curve price at that quantity."
+          answer: 3,
+          explanation: "The monopolist chooses Q* from MR=MC and then charges the demand-curve price, P4."
         },
         {
           text: "In Figure 5.5, a monopolist would charge which price?",
@@ -462,8 +462,8 @@
           imageAlt: "Figure 5.5 monopoly demand, marginal revenue, and cost curves.",
           caption: "Figure 5.5",
           options: ["P1", "P2", "P3", "P4"],
-          answer: 3,
-          explanation: "At Q*, the demand curve indicates price P4."
+          answer: 2,
+          explanation: "At Q*, the demand curve indicates price P3."
         },
         {
           text: "In Figure 5.6, a monopolist would charge which price?",
@@ -471,8 +471,8 @@
           imageAlt: "Figure 5.6 monopoly demand, marginal revenue, and cost curves.",
           caption: "Figure 5.6",
           options: ["The monopolist would shut down, so no price would be charged.", "P2", "P3", "P4"],
-          answer: 3,
-          explanation: "The monopolist chooses Q* from MR=MC and then charges the demand-curve price, P4."
+          answer: 0,
+          explanation: "The monopolist would shut down in this case, so no price would be charged."
         },
         {
           text: "Which of the following is not an assumption of perfect competition?",
@@ -578,8 +578,8 @@
             "no pressure on the price to change.",
             "short and long-run pressure on the price to fall."
           ],
-          answer: 1,
-          explanation: "Positive economic profit attracts entry in the long run, pushing price down."
+          answer: 3,
+          explanation: "At MR4, positive economic profit creates downward pressure on price."
         },
         {
           text: "Under perfect competition, the supply curve is",
