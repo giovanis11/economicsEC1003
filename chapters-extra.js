@@ -137,8 +137,8 @@
         {
           text: "An increase in supply will always",
           options: ["increase producer surplus.", "decrease consumer surplus.", "decrease producer surplus.", "increase consumer surplus."],
-          answer: 3,
-          explanation: "An outward supply shift lowers price and raises quantity, increasing consumer surplus."
+          answer: 0,
+          explanation: "An increase in supply raises producer surplus."
         },
         {
           text: "If the percentage change in quantity supplied is 5%, and the percentage change in price is 10%, then the supply for the good is",
