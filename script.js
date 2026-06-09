@@ -947,6 +947,10 @@ builtInChapters.push({
   ]
 });
 
+if (Array.isArray(window.finalBuiltInChapters)) {
+  builtInChapters.unshift(...window.finalBuiltInChapters);
+}
+
 if (Array.isArray(window.extraBuiltInChapters)) {
   builtInChapters.push(...window.extraBuiltInChapters);
 }
