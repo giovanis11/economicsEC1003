@@ -76,6 +76,369 @@
     caption: "Figure 7.1"
   };
 
+  const finalExamQuestions = [
+    q("Gross Domestic Product counts only final goods and services mainly because:", [
+      "intermediate goods are never sold in markets",
+      "it avoids counting the same production more than once",
+      "foreign firms do not keep accounting records",
+      "government purchases are excluded from GDP"
+    ], 1),
+    q("A German-owned company produces tires in Tennessee. Those tires are:", [
+      "counted in U.S. GDP because they are produced in the United States",
+      "counted in German GDP because the company is German-owned",
+      "excluded from every country's GDP",
+      "counted only if they are exported"
+    ], 0),
+    q("The expenditure approach to GDP is best written as:", [
+      "wages + rent + interest + profit",
+      "consumption + taxes + imports + savings",
+      "consumption + investment + government purchases + net exports",
+      "income + depreciation - exports"
+    ], 2),
+    q("A U.S. store imports a tablet for $300 and sells it to a customer for $420. The direct effect on U.S. GDP is:", [
+      "$0",
+      "$120",
+      "$300",
+      "$420"
+    ], 1),
+    q("A refrigerator is produced in December but sold to a household in January. In GDP accounting, it is:", [
+      "counted only when the customer buys it",
+      "never counted because it was stored as inventory",
+      "counted as government spending in December",
+      "counted as inventory investment when produced, with the sale adjusting inventory later"
+    ], 3),
+    q("A market basket costs $500 in the base year and $575 this year. The price index this year is:", [
+      "75",
+      "100",
+      "115",
+      "575"
+    ], 2),
+    q("If the CPI rises from 160 to 168, the inflation rate is:", [
+      "2.5 percent",
+      "5 percent",
+      "8 percent",
+      "68 percent"
+    ], 1),
+    q("Deflation occurs when:", [
+      "a few prices fall but the average price level rises",
+      "the average price level falls",
+      "the inflation rate is positive but smaller than before",
+      "wages rise more slowly than prices"
+    ], 1),
+    q("If actual inflation is higher than lenders and borrowers expected, the group that tends to gain is:", [
+      "lenders",
+      "borrowers",
+      "people paid fixed nominal incomes",
+      "holders of cash savings"
+    ], 1),
+    q("Suppose 92 million people are employed, 8 million are unemployed and looking for work, and 50 million are not in the labor force. The unemployment rate is:", [
+      "5.3 percent",
+      "8 percent",
+      "13.8 percent",
+      "40 percent"
+    ], 1),
+    q("A worker loses a factory job because the firm permanently replaces that job with automated equipment. This is best described as:", [
+      "frictional unemployment",
+      "structural unemployment",
+      "cyclical unemployment",
+      "seasonal unemployment"
+    ], 1),
+    q("In a country with 200 million adults, 124 million employed people and 6 million unemployed people, the labor force participation rate is:", [
+      "3 percent",
+      "62 percent",
+      "65 percent",
+      "97 percent"
+    ], 2),
+    q("A sudden crisis in consumer and business confidence will most likely:", [
+      "shift aggregate demand left",
+      "shift aggregate demand right",
+      "shift aggregate supply right",
+      "leave both curves unchanged"
+    ], 0),
+    q("An increase in personal income taxes will most directly:", [
+      "increase aggregate demand",
+      "decrease aggregate demand",
+      "increase aggregate supply",
+      "decrease aggregate supply only"
+    ], 1),
+    q("An increase in government purchases, holding other factors constant, will:", [
+      "shift aggregate demand right",
+      "shift aggregate demand left",
+      "shift aggregate supply right",
+      "shift aggregate supply left"
+    ], 0),
+    q("Higher interest rates tend to affect aggregate demand by:", [
+      "increasing investment and consumption spending",
+      "reducing interest-sensitive spending",
+      "lowering input costs for producers",
+      "raising aggregate supply"
+    ], 1),
+    q("A sharp increase in oil prices would most likely:", [
+      "shift aggregate supply right and lower prices",
+      "shift aggregate supply left and raise prices",
+      "shift aggregate demand right and raise output",
+      "shift aggregate demand left and lower input costs"
+    ], 1),
+    q("An economy-wide increase in worker productivity will most likely:", [
+      "increase aggregate supply",
+      "decrease aggregate supply",
+      "decrease aggregate demand",
+      "increase unemployment by definition"
+    ], 0),
+    q("Demand-pull inflation can be caused by:", [
+      "falling oil prices",
+      "lower government spending",
+      "rising aggregate demand",
+      "falling productivity"
+    ], 2),
+    q("Cost-push inflation is most likely to result from:", [
+      "a decrease in interest rates",
+      "an increase in input prices",
+      "a tax cut that raises consumption",
+      "a rise in consumer confidence"
+    ], 1),
+    q("A supply-side economist would most likely support:", [
+      "higher regulations on business firms",
+      "a higher minimum wage requirement",
+      "lower taxes on production and investment",
+      "employer benefit mandates that raise labor costs"
+    ], 2),
+    q("The long-run aggregate supply model assumes that:", [
+      "both input and output prices can adjust",
+      "input prices are fixed but output prices are flexible",
+      "output prices are fixed but input prices are flexible",
+      "both input and output prices are fixed"
+    ], 0),
+    q("If both personal income taxes and business taxes rise, the likely combined effect is:", [
+      "aggregate demand rises and aggregate supply rises",
+      "aggregate demand falls and aggregate supply falls",
+      "aggregate demand falls and aggregate supply rises",
+      "aggregate demand rises and aggregate supply falls"
+    ], 1),
+    q("When the general price level rises, which statement is the exception?", [
+      "The purchasing power of money savings increases",
+      "foreign buyers may buy less domestic output",
+      "imports may become more attractive",
+      "net exports may decrease"
+    ], 0),
+    q("A progressive income tax and unemployment benefits are examples of:", [
+      "automatic stabilizers",
+      "open market operations",
+      "monetary policy tools",
+      "exchange-rate policy"
+    ], 0),
+    q("A temporary tax cut passed by Congress to encourage household spending is:", [
+      "nondiscretionary fiscal policy",
+      "discretionary fiscal policy",
+      "monetary policy",
+      "a reserve requirement change"
+    ], 1),
+    q("Expansionary fiscal policy in the short run usually:", [
+      "shifts aggregate demand right",
+      "shifts aggregate demand left",
+      "decreases consumption by design",
+      "reduces government purchases"
+    ], 0),
+    q("If policymakers use fiscal policy to fight high demand-pull inflation, they would most likely:", [
+      "cut taxes and raise government spending",
+      "raise taxes or cut government spending",
+      "buy government securities",
+      "lower the reserve ratio"
+    ], 1),
+    q("Tax rebate checks sent to households to stimulate spending are an example of:", [
+      "fiscal policy",
+      "monetary policy",
+      "international trade policy",
+      "antitrust policy"
+    ], 0),
+    q("Automatic stabilizers help the economy because they:", [
+      "require a new law every time GDP changes",
+      "automatically increase interest rates during recessions",
+      "cushion changes in income and spending without new legislation",
+      "eliminate all unemployment"
+    ], 2),
+    q("One political problem with discretionary fiscal policy is:", [
+      "politicians may time policy for electoral advantage",
+      "automatic stabilizers are too fast",
+      "the Federal Reserve must approve all tax changes",
+      "consumers cannot respond to tax cuts"
+    ], 0),
+    q("An unexpected increase in world oil prices is best classified as:", [
+      "a positive demand shock",
+      "a negative supply shock",
+      "a monetary shock only",
+      "a nondiscretionary fiscal policy"
+    ], 1),
+    q("An unexpected collapse in consumer confidence is best classified as:", [
+      "a negative demand shock",
+      "a positive supply shock",
+      "a reserve requirement change",
+      "an increase in productive capacity"
+    ], 0),
+    q("A surtax created specifically to slow inflation is:", [
+      "expansionary discretionary fiscal policy",
+      "contractionary discretionary fiscal policy",
+      "expansionary monetary policy",
+      "nondiscretionary monetary policy"
+    ], 1),
+    q("A new federally funded jobs program during a recession is:", [
+      "expansionary discretionary fiscal policy",
+      "contractionary discretionary fiscal policy",
+      "nondiscretionary fiscal policy only",
+      "open market policy"
+    ], 0),
+    q("A leader who says the economy should rely on automatic stabilizers instead of new tax and spending laws is favoring:", [
+      "discretionary fiscal policy",
+      "nondiscretionary fiscal policy",
+      "contractionary monetary policy",
+      "central bank independence"
+    ], 1),
+    q("Savers are mainly motivated by the:", [
+      "nominal interest rate only",
+      "real interest rate",
+      "exchange rate",
+      "unemployment rate"
+    ], 1),
+    q("In the market for loanable funds, the price is the:", [
+      "wage rate",
+      "inflation index",
+      "interest rate",
+      "exchange rate"
+    ], 2),
+    q("A higher interest rate tends to:", [
+      "encourage saving and discourage borrowing",
+      "discourage saving and encourage borrowing",
+      "discourage both saving and borrowing equally",
+      "have no effect on saving decisions"
+    ], 0),
+    q("If the nominal interest rate is 7 percent and expected inflation is 3 percent, the approximate real interest rate is:", [
+      "3 percent",
+      "4 percent",
+      "7 percent",
+      "10 percent"
+    ], 1),
+    q("If the real interest rate is 2 percent and expected inflation is 5 percent, the approximate nominal interest rate is:", [
+      "-3 percent",
+      "2 percent",
+      "5 percent",
+      "7 percent"
+    ], 3),
+    q("If $2,000 is invested for three years at 5 percent interest compounded annually, its future value is:", [
+      "2,000 / (1.05)^3",
+      "2,000 x (1.05)^3",
+      "2,000 x (0.05)^3",
+      "2,000 / 0.05"
+    ], 1),
+    q("The present value today of receiving $10,000 five years from now at a 4 percent interest rate is:", [
+      "10,000 x (1.04)^5",
+      "10,000 / (1.04)^5",
+      "10,000 x 0.04",
+      "10,000 / 5"
+    ], 1),
+    q("As the interest rate rises, the present value of a future payment:", [
+      "rises",
+      "falls",
+      "stays exactly the same",
+      "becomes equal to the future payment"
+    ], 1),
+    q("Present value is useful in business decisions because:", [
+      "costs and benefits often occur at different times",
+      "it ignores interest rates",
+      "it counts only cash held by banks",
+      "it converts all investments into government spending"
+    ], 0),
+    q("The interest rate that makes the present value of benefits equal to the present value of costs is the:", [
+      "discount window",
+      "reserve ratio",
+      "internal rate of return",
+      "price index"
+    ], 2),
+    q("Using the Rule of 72, money growing at 6 percent per year will double in about:", [
+      "6 years",
+      "9 years",
+      "12 years",
+      "72 years"
+    ], 2),
+    q("If many households decide to save more for retirement, the loanable funds market will most likely experience:", [
+      "an increase in the supply of loanable funds",
+      "a decrease in the supply of loanable funds",
+      "an increase in the demand for loanable funds",
+      "no change in either curve"
+    ], 0),
+    q("Open market operations involve the Federal Reserve buying and selling:", [
+      "corporate stocks",
+      "government securities",
+      "gold jewelry",
+      "consumer goods"
+    ], 1),
+    q("If the Federal Reserve sells government securities, the likely effect is:", [
+      "bank reserves fall and interest rates rise",
+      "bank reserves rise and interest rates fall",
+      "government spending automatically rises",
+      "the reserve ratio becomes zero"
+    ], 0),
+    q("If the Federal Reserve buys government securities, the likely effect is:", [
+      "bank reserves rise and interest rates fall",
+      "bank reserves fall and interest rates rise",
+      "taxes automatically decrease",
+      "M1 must decrease"
+    ], 0),
+    q("If the reserve ratio is 10 percent, the simple money multiplier can be as high as:", [
+      "2",
+      "5",
+      "10",
+      "20"
+    ], 2),
+    q("If the reserve ratio is 20 percent and the banking system receives $1,000 in new deposits, the maximum total deposit expansion is:", [
+      "$200",
+      "$1,000",
+      "$2,000",
+      "$5,000"
+    ], 3),
+    q("The reserve ratio is:", [
+      "the percentage of deposits banks must hold as reserves",
+      "the interest rate charged on mortgages",
+      "the ratio of exports to imports",
+      "the percentage of income paid in taxes"
+    ], 0),
+    q("The federal funds rate is:", [
+      "directly set by Congress",
+      "determined by market forces but targeted by the Federal Reserve",
+      "the rate paid on Treasury bonds only",
+      "the same thing as the inflation rate"
+    ], 1),
+    q("The Federal Open Market Committee is responsible for:", [
+      "setting the target for the federal funds rate",
+      "writing federal tax law",
+      "deciding individual mortgage applications",
+      "calculating the CPI basket"
+    ], 0),
+    q("If money is moved from a checking account into a savings account:", [
+      "M1 decreases and M2 remains unchanged",
+      "M1 increases and M2 decreases",
+      "both M1 and M2 increase",
+      "both M1 and M2 decrease"
+    ], 0),
+    q("If interest rates are near zero and further monetary stimulus does not increase borrowing much, the economy may be in:", [
+      "a liquidity trap",
+      "hyperinflation",
+      "a budget surplus",
+      "a supply shock"
+    ], 0),
+    q("If the Fed wants banks to have more ability to lend, one policy option is to:", [
+      "raise the reserve ratio",
+      "lower the reserve ratio",
+      "raise income taxes",
+      "reduce unemployment benefits"
+    ], 1),
+    q("Evidence from central banking suggests that central banks tend to be most effective when they are:", [
+      "independent from short-term political pressure",
+      "controlled directly by election campaigns",
+      "required to finance government deficits",
+      "run by the legislature day to day"
+    ], 0)
+  ];
+
   const chapter6Questions = [
     q("The reason that only final sales are counted in GDP is", [
       "to avoid double counting goods that are sold so as to be resold.",
@@ -1153,6 +1516,13 @@
   ];
 
   window.finalBuiltInChapters = [
+    {
+      id: "final-exam-chapters-6-to-10-version-b",
+      kicker: "Practice Final",
+      title: "Chapters 6-10 Final Exam",
+      subtitle: "Questions in the exact order of the paper",
+      questions: finalExamQuestions
+    },
     {
       id: "final-gdp-business-cycle-unemployment-inflation",
       kicker: "Final Chapter 6",
