@@ -947,11 +947,13 @@ builtInChapters.push({
   ]
 });
 
-if (Array.isArray(window.finalBuiltInChapters)) {
-  builtInChapters.unshift(...window.finalBuiltInChapters);
+const useFinalExamChaptersOnly = Array.isArray(window.finalBuiltInChapters);
+
+if (useFinalExamChaptersOnly) {
+  builtInChapters.splice(0, builtInChapters.length, ...window.finalBuiltInChapters);
 }
 
-if (Array.isArray(window.extraBuiltInChapters)) {
+if (!useFinalExamChaptersOnly && Array.isArray(window.extraBuiltInChapters)) {
   builtInChapters.push(...window.extraBuiltInChapters);
 }
 
@@ -995,12 +997,7 @@ function loadImportedChapters() {
 }
 
 function loadChapters() {
-  const regularChapters = sourceChapters();
-  return mixChapterOptions([
-    ...regularChapters,
-    createRandomChapter(regularChapters),
-    createFocusChapter(regularChapters)
-  ]);
+  return sourceChapters();
 }
 
 function saveImportedChapters() {
@@ -1008,7 +1005,7 @@ function saveImportedChapters() {
 }
 
 function sourceChapters() {
-  return [...builtInChapters, ...importedChapters];
+  return builtInChapters;
 }
 
 function createRandomChapter(sourceChapterItems) {
